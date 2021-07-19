@@ -6,6 +6,8 @@ This project was created using `React`, `Next.js`, `DatoCMS`, and `Style-Compone
 ## About the Project
 Alurakut is a attempt to recreat the Orkut social media.
 
+To get your own copy of the project you can clone it and run the command `yarn dev` in the terminal.
+
 The project was developed during the Imersão Alura event in July 2021.
 
 ## Design Previews
