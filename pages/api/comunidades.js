@@ -10,9 +10,6 @@ export default async function recebedorDeRequests(request, response){
       itemType: "971905",
 
       ...request.body,
-      // title: "Comunidade de Teste",
-      // imageUrl: "https://api.github.com/jmafort.png",
-      // creatorSlug: "jmafort",
     });
 
     response.json({

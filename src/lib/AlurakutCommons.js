@@ -35,7 +35,7 @@ export function AlurakutMenu({ githubUser }) {
         </nav>
 
         <nav>
-          <a href={`/logout`}>
+          <a href={`/login`}>
             Sair
           </a>
           <div>
@@ -54,8 +54,7 @@ export function AlurakutMenu({ githubUser }) {
 }
 AlurakutMenu.Wrapper = styled.header`
   width: 100%;
-  background-color: #308BC5;
-
+  background-color: #67569C;
   .alurakutMenuProfileSidebar {
     background: white;
     position: fixed;
@@ -81,12 +80,11 @@ AlurakutMenu.Wrapper = styled.header`
     }
     .boxLink {
       font-size: 18px;
-      color: #2E7BB4;
+      color: #67569C;
       -webkit-text-decoration: none;
       text-decoration: none;
       font-weight: 800;
     }
-
     hr {
       margin-top: 12px;
       margin-bottom: 8px;
@@ -94,9 +92,8 @@ AlurakutMenu.Wrapper = styled.header`
       border-bottom-color: #ECF2FA;
     }
   }
-
   .container {
-    background-color: #308BC5;
+    background-color: #67569C;
     padding: 7px 16px;
     max-width: 1110px;
     margin: auto;
@@ -107,7 +104,6 @@ AlurakutMenu.Wrapper = styled.header`
     @media(min-width: 860px) {
       justify-content: flex-start;
     }
-
     button {
       border: 0;
       background: transparent;
@@ -117,7 +113,6 @@ AlurakutMenu.Wrapper = styled.header`
         display: none;
       }
     }
-
     nav {
       display: none;
       @media(min-width: 860px) {
@@ -131,7 +126,7 @@ AlurakutMenu.Wrapper = styled.header`
         text-decoration: none;
         &:after {
           content: " ";
-          background-color: #5292C1;
+          background-color: #67569C;
           display: block;
           position: absolute;
           width: 1px;
@@ -145,7 +140,7 @@ AlurakutMenu.Wrapper = styled.header`
     }
     input {
       color: #ffffff;
-      background: #5579A1;
+      background: #8171B1;
       padding: 10px 42px;
       border: 0;
       background-image: url(${`${BASE_URL}/icons/search.svg`});
@@ -157,7 +152,7 @@ AlurakutMenu.Wrapper = styled.header`
         color: #ffffff;
         opacity: 1;
       }
-    } 
+    }
   }
 `;
 AlurakutMenu.Logo = styled.img`
@@ -174,7 +169,7 @@ function AlurakutMenuProfileSidebar({ githubUser }) {
         <img src={`https://github.com/${githubUser}.png`} style={{ borderRadius: '8px' }} />
         <hr />
         <p>
-          <a className="boxLink" href={`/user/${githubUser}`}>
+          <a className="boxLink" style={{color: "#67569C"}} href={`/user/${githubUser}`}>
             @{githubUser}
           </a>
         </p>
@@ -216,7 +211,7 @@ export function AlurakutProfileSidebarMenuDefault() {
           <img src={`${BASE_URL}/icons/plus.svg`} />
             GitHub Trends
           </a>
-        <a href="/logout">
+        <a href="/login">
           <img src={`${BASE_URL}//icons/logout.svg`} />
             Sair
           </a>
@@ -227,7 +222,7 @@ export function AlurakutProfileSidebarMenuDefault() {
 AlurakutProfileSidebarMenuDefault.Wrapper = styled.div`
   a {
     font-size: 12px;
-    color: #2E7BB4;
+    color: #473E6B;
     margin-bottom: 16px;
     display: flex;
     align-items: center;
@@ -260,7 +255,7 @@ export function OrkutNostalgicIconSet(props) {
           </span>
           <span className="OrkutNostalgicIconSet__number" style={{ gridArea: 'number' }}>
             <img key={`orkut__icon_set__${slug}_img`} className="OrkutNostalgicIconSet__iconSample" src={`https://alurakut.vercel.app/icons/${icon}.svg`} />
-            {props[slug] ? props[slug] : 0}
+            {props[slug] ? props[slug] : 20}
           </span>
         </li>
       ))}
@@ -269,7 +264,7 @@ export function OrkutNostalgicIconSet(props) {
         { name: 'Legal', slug: 'legal', icon: 'cool' },
         { name: 'Sexy', slug: 'sexy', icon: 'heart' },
       ].map(({ name, slug, icon }) => {
-        const total = props[slug] ? props[slug] : 2;
+        const total = props[slug] ? props[slug] : 3;
         return (
           <li key={`orkut__icon_set__${slug}`}>
             <span className="OrkutNostalgicIconSet__title">
@@ -329,8 +324,8 @@ const AlurakutLoginScreen = css`
     --backgroundSecondary: #F1F9FE;
     --backgroundTertiary: #FFFFFF;
     --backgroundQuarternary: #BBCDE8;
-    --colorPrimary: #2E7BB4;
-    --colorSecondary: #388BB0;
+    --colorPrimary: #67569C;
+    --colorSecondary: #8171B1;
     --colorTertiary: #2F4A71;
     --colorQuarternary: #D81D99;
     --textPrimaryColor: #333333;
@@ -339,8 +334,6 @@ const AlurakutLoginScreen = css`
     --textQuarternaryColor: #C5C6CA;
     --commonRadius: 8px;
   }
-
-
   .loginScreen {
     padding: 16px;
     max-width: 1110px;
@@ -503,6 +496,5 @@ export const AlurakutStyles = css`
       box-shadow: 0px 0px 5px #33333357;
     }
   }
-
   ${AlurakutLoginScreen}
 `;

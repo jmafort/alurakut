@@ -1,33 +1,38 @@
 import { createGlobalStyle, ThemeProvider } from 'styled-components'
-import { AlurakutStyles } from '../src/lib/AlurakutCommons';
+import { AlurakutStyles } from '../src/lib/AlurakutCommons'
 
 const GlobalStyle = createGlobalStyle`
-  /* Reset CSS (Necolas Reset CSS <3) */
-  * {
+  *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
   }
+
   body {
+    background: url("https://wallpaperaccess.com/full/2029165.jpg");
+    background-position: center;
+    background-size: cover;
     font-family: sans-serif;
-    background-color: #D9E6F6;
   }
-  #__next {
-    display: flex;
+
+  #__next{
     min-height: 100vh;
+    display: flex;
     flex-direction: column;
   }
+
   img {
     max-width: 100%;
     height: auto;
     display: block;
   }
+
   ${AlurakutStyles}
 `
 
 const theme = {
   colors: {
-    primary: 'red',
+    primary: "violet",
   },
 }
 
