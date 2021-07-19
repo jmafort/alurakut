@@ -1,6 +1,8 @@
 import React from 'react';
 import MainGrid from '../src/components/MainGrid'
 import Box from '../src/components/Box'
+import jwt from 'jsonwebtoken'
+import nookies from 'nookies'
 import { AlurakutMenu, AlurakutProfileSidebarMenuDefault, OrkutNostalgicIconSet } from '../src/lib/AlurakutCommons';
 import { ProfileRelationsBoxWrapper } from '../src/components/ProfileRelations';
 
@@ -44,8 +46,8 @@ function ProfileRelationsBox(propriedades){
   )
 }
 
-export default function Home() {
-  const usuarioAleatorio = 'jmafort';
+export default function Home(props) {
+  const usuarioAleatorio = props.githubUser;
   const [comunidades, setComunidades] = React.useState([]);
 
   const pessoasFavoritas = [
@@ -58,7 +60,7 @@ export default function Home() {
   ]
 
   const [seguidores, setSeguidores] = React.useState([]);
-  
+
   React.useEffect(function(){
     fetch('https://api.github.com/users/peas/followers')
     .then(function(respostaDoServidor){
@@ -103,7 +105,7 @@ export default function Home() {
         <div className="welcomeArea" style={{ gridArea: 'welcomeArea' }}>
           <Box>
             <h1 className="title">
-              Bem vindo(a) 
+              Bem vindo(a)
             </h1>
 
             <OrkutNostalgicIconSet />
@@ -187,7 +189,7 @@ export default function Home() {
             </h2>
 
             <ul>
-              {pessoasFavoritas.map((itemAtual) => {
+              {pessoasFavoritas.slice(0,6).map((itemAtual) => {
                 return (
                   <li key={itemAtual}>
                     <a href={`/users/${itemAtual}`}>
@@ -203,4 +205,39 @@ export default function Home() {
       </MainGrid>
     </>
   )
+}
+
+export async function getServerSideProps(ctx) {
+  const cookies = nookies.get(ctx);
+  const token = cookies.USER_TOKEN;
+  const {isAuthenticated} = await fetch('https://alurakut.vercel.app/api/auth', {
+    headers: {
+      Authorization: token
+    }
+  })
+  .then((resposta) => resposta.json())
+
+  if(!isAuthenticated) {
+    return {
+      redirect: {
+        destination: '/login',
+        permanent: false,
+      }
+    }
+  }
+
+  // const followers = await fetch(`https://api.github.com/users/${githubUser}/followers`)
+  //   .then((res) => res.json())
+  //   .then(followers => followers.map((follower) => ({
+  //     id: follower.id,
+  //     name: follower.login,
+  //     image: follower.avatar_url,
+  //   })));
+  const {githubUser} = jwt.decode(token);
+
+  return {
+    props: {
+      githubUser
+    },
+  }
 }
